@@ -1,16 +1,15 @@
 import React from 'react';
-// import SearchInput from './SearchInput';
-// import ListContainer from './ListContainer';
-
-//import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import SearchInput from './SearchInput';
+import ListContainer from './ListContainer';
 
 const SearchView = () => {
-  // const { // state}= useArtists
-
   return (
     <>
-      <SearchInput />
-      <ListContainer />
+      {/* <Link to={`/release/${artist}/${title}/${id}`}> */}
+        <SearchInput />
+        <ListContainer />
+      {/* </Link> */}
     </>
   );
 };
