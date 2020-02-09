@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 
 
 const ArtistView = ({ listAlbums, artist }) => {
-  //const albumElements = listAlbums.map(el => {
   const albumElements = listAlbums.map(el => {
     const title = el.title;
     const id = el.id;
-    console.log(`id: ${id} title: ${title}`);
     const coverArt = el['cover-art-archive'].front ? `http://coverartarchive.org/release/${id}/front` : 'https://img.discogs.com/BLRZgvXg7CYPxEtCZeJ-0AIryyc=/fit-in/530x536/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2544883-1298167563.jpeg.jpg';
       
     return (

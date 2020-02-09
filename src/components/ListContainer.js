@@ -6,10 +6,6 @@ import ListItem from './ListItem';
 
 const ListContainer = ({ listItems }) => {
   const listElements = listItems.map((el, id) => {
-  //const listElements = listItems.map(({ name }) => {
-    // console.log(el);
-    //console.log(`name is ${el.name}`);
-    //const nameConv = el.name ? el.name : 'WhatHappened';
     return (<li key={id}>
       <ListItem name={el.name} />
     </li>);

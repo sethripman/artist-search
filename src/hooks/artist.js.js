@@ -1,40 +1,28 @@
 import { useState, useEffect } from 'react';
-import { getArtists, getReleases, getSongs, getLyrics } from '../services/musicBrainz';
+import { getArtists } from '../services/musicBrainz';
+import { useHistory } from 'react-router-dom';
 
-export const useArtist = (searchString) => {
-  const [artists, setArtists] = useState([]);
+export const useArtist = () => {
+  const [search, setSearch] = useState('');
+  const [searchString, setSearchString] = useState('');
+  const [artists, setArtists] = useState({
+    artists: []
+  });
+  const history = useHistory;
+
   useEffect(() => {
     getArtists(searchString)
       .then(setArtists);
-  });
-  return artists;
+  }, [searchString]);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    history.pushState('/');
+    setSearchString(search);
+  };
+
+  return { artists: artists.artists,  handleSubmit, search, setSearch };
 };
 
-export const useReleases = (id) => {
-  const [releases, setReleases] = useState([{}]);
-  useEffect(()=> {
-    getReleases(id)
-      .then(setReleases);
-  }, [id]);
-  return releases;
-};
-
-export const useSongs = (id) => {
-  const [songs, setSongs] = useState([]);
-  useEffect(() => {
-    getSongs(id)
-      .then(setSongs);
-  });
-  return songs;
-};
-
-export const useLyrics = (artist, songTitle) => {
-  const [lyrics, setLyircs] = useState([]);
-  useEffect(() => {
-    getLyrics(artist, songTitle)
-      .then(setLyircs);
-  });
-  return lyrics;
-};
   
 

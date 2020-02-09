@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SearchInput from './SearchInput';
 import ListContainer from './ListContainer';
+import { useArtist } from '../hooks/artist.js';
 
 const SearchView = () => {
+  const { artists,  handleSubmit, search, setSearch } = useArtist();
+
   return (
     <>
-      {/* <Link to={`/release/${artist}/${title}/${id}`}> */}
-        <SearchInput />
-        <ListContainer />
-      {/* </Link> */}
+      <form onSubmit={handleSubmit}>
+        <input type="text" onChange={({ target }) => setSearch(target.value)} 
+          value={search} name="search"/>
+        <button>Search</button>
+      </form>
+      <ListContainer listItems={artists}/>
     </>
   );
 };

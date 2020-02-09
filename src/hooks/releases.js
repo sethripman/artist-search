@@ -8,5 +8,6 @@ export const useReleases = (id) => {
     getReleases(id)
       .then(setReleases);
   }, [id]);
+  
   return releases;
 };

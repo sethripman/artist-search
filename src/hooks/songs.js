@@ -7,6 +7,7 @@ export const useSongs = (id) => {
   useEffect(() => {
     getSongs(id)
       .then(setSongs);
-  });
+  }, [id]);
+  
   return songs;
 };
