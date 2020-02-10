@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchView from './SearchView';
 import ListContainer from './ListContainer';
 import ReleaseView from './ReleaseView';
 import ArtistView from './ArtistView';
@@ -14,11 +15,10 @@ export default function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/" component={LyricView} />
-          <Route path="/" component={ListContainer} />
-          <Route path="/albums/:id" component={ArtistView} />
-          <Route path="/release/:artist/:title/:id" component={ReleaseView} /> 
-          <Route path="/" component={ReleaseView} /> 
+          <Route path="/" component={SearchView} />
+          <Route path="/albums/:id/:artist" component={ArtistView} />
+          <Route path="/release/:id/:artist" component={ReleaseView} /> 
+          <Route path="/lyric/:id/:artist/:title" component={LyricView} /> 
         </Switch>
       </Router>
     </>
