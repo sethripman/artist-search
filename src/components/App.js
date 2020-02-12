@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchView from './SearchView';
-import ListContainer from './ListContainer';
 import ReleaseView from './ReleaseView';
 import ArtistView from './ArtistView';
 import {
