@@ -1,5 +1,5 @@
 export const getArtists = (searchString, pageNumber = 0) => {
-  return fetch(`http://musicbrainz.org/ws/2/artist?query=${searchString}&fmt=json&limit=25&offset=${pageNumber * 25}`)
+  return fetch(`http://musicbrainz.org/ws/2/artist?query=${searchString}&fmt=json&limit=25&offset=${pageNumber}`)
     .then(res => ([res.success, res.json()]))
     .then(([success, json]) => {
       if(!success) throw 'Artist Search Failed.';
@@ -7,7 +7,7 @@ export const getArtists = (searchString, pageNumber = 0) => {
     });
 };
 export const getReleases = (id, pageNumber = 0) => {
-  return fetch(`http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json&offset=${pageNumber * 25}`)
+  return fetch(`http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json&limit=25&offset=${pageNumber}`)
     .then(res => ([res.success, res.json()]))
     .then(([success, json]) => {
       if(!success) throw 'Release Search Failed.';

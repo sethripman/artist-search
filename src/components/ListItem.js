@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ListItem = ({ name }) => {
-  // console.log(`nameee ${name}`);
   return (
     <section>
-      <p>{name}</p>
+      <Link>
+        <p>{name}</p>
+      </Link>
     </section>
   );};
 
