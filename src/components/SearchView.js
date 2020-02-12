@@ -10,7 +10,6 @@ const SearchView = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={({ target }) => setSearch(target.value)} 
           value={search} name="search"/>
-        <button>Search</button>
       </form>
       <ListContainer listItems={artists}/>
     </>

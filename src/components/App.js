@@ -14,7 +14,7 @@ export default function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/" component={SearchView} />
+          <Route exact path="/" component={SearchView} />
           <Route path="/albums/:id/:artist" component={ArtistView} />
           <Route path="/release/:id/:artist" component={ReleaseView} /> 
           <Route path="/lyric/:id/:artist/:title" component={LyricView} /> 
@@ -23,3 +23,10 @@ export default function App() {
     </>
   );
 }
+
+// Flatten searchview so it contains listitem and listcontainer
+// Refactor the other services
+// Push to history
+// Paging button component
+// Pass relevant default state through history, not through prop drilling
+// 

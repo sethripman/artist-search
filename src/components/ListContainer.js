@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 
-
-
 const ListContainer = ({ listItems }) => {
   const listElements = listItems.map((el, id) => {
     return (<li key={id}>
