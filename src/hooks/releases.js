@@ -6,12 +6,9 @@ export const useReleases = (id) => {
   const [releases, setReleases] = useState([]);
 
   useEffect(() => {
-    //if(!searchParam) return;
     getReleases(id)
       .then(({ releases }) => setReleases(releases));
   }, []);
-
-  console.log(`releases: ${releases}`);
 
   return { releases };
 };
