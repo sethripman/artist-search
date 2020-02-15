@@ -1,5 +1,4 @@
 export const getArtists = (searchString, pageNumber = 1) => {
-  //http://musicbrainz.org/ws/2/artist\?query\="coldplay"\&fmt\=json
   return fetch(`http://musicbrainz.org/ws/2/artist?query=${searchString}&fmt=json&limit=25&offset=${pageNumber}`)
     .then(res => 
       res.json()
