@@ -1,28 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getArtists } from '../services/musicBrainz';
-import { useHistory } from 'react-router-dom';
 
 export const useArtist = () => {
+  const [artists, setArtists] = useState([]);
   const [search, setSearch] = useState('');
-  const [searchString, setSearchString] = useState('');
-  const [artists, setArtists] = useState({
-    artists: []
-  });
-  const history = useHistory;
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    getArtists(searchString)
-      .then(setArtists);
-  }, [searchString]);
-
-  const handleSubmit = event => {
+  const handleSubmit = () => {
     event.preventDefault();
-    history.pushState('/');
-    setSearchString(search);
+    setSearch(search);
+    return artists;
   };
 
-  return { artists: artists.artists,  handleSubmit, search, setSearch };
-};
+  const handlePageChange = (value) => {
+    if(value === 'next'){
+      setPage(page + 1);
+    }
+    if(value === 'previous' && page !== 1){
+      setPage(page - 1);
+    }
+  };
 
+  useEffect(() => {
+    if(!search) return;
+    getArtists(search, page)
+      .then(res => {
+        setArtists(res.artists);
+      });
+  }, [search, page]);
+  return { artists, search, setSearch, handleSubmit, handlePageChange };
+};
   
 
