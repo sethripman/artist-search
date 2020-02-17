@@ -1,50 +1,42 @@
-export const getArtists = (searchString, page = 0) => {
-  return fetch(
-    `https://cors-anywhere.herokuapp.com/http://musicbrainz.org/ws/2/artist?query=${searchString}&fmt=json&offset=${(page) * 25}`,
-    {
-      headers: {
-        origin: null
-      }
-    }
-  ).then(res => {
-    if(res.ok) return res.json();
-    throw `Response: ${res.status}`;
-  });
+export const getArtists = (searchString, pageNumber = 1) => {
+  return fetch(`http://musicbrainz.org/ws/2/artist?query=${searchString}&fmt=json&limit=25&offset=${pageNumber}`)
+    .then(res => 
+      res.json()
+    )
+    .then(res => 
+      res
+    );
+  
 };
-
-export const getReleases = (id, page = 0) => {
-  return fetch(`https://cors-anywhere.herokuapp.com/http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json&limit=25&offset=${(page) * 25}`,
-    {
-      headers: {
-        origin: null
-      }
-    }
-  ).then(res => {
-    if(res.ok) return res.json();
-    throw `Response: ${res.status}`;
-  });
+export const getReleases = (id) => {
+  return fetch(`http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json`)
+    .then(res =>
+      res.json()
+    )
+    .then(res => 
+      res
+    );
 };
 
 export const getSongs = (id) => {
-  return fetch(`https://cors-anywhere.herokuapp.com/http://musicbrainz.org/ws/2/recording?release=${id}&fmt=json`,
-    {
-      headers: {
-        origin: null
-      }
-    }).then(res => {
-    if(res.ok) return res.json();
-    throw `Response: ${res.status}`;
-  });
-};
-export const getLyrics = (artist, songTitle) => {
-  return fetch(`https://cors-anywhere.herokuapp.com/https://api.lyrics.ovh/v1/${artist}/${songTitle}`,
-    {
-      headers: {
-        origin: null
-      }
-    })
-    .then(res => {
-      if(res.ok) return res.json();
-      throw `Response: ${res.status}`;
+  return fetch(`http://musicbrainz.org/ws/2/recording?release=${id}&fmt=json`)
+    .then(res =>
+      res.json()
+    )
+    .then(res =>{
+      console.log(`res: ${res}`);
+      return res;
     });
 };
+export const getLyrics = (artist, songTitle) => {
+  
+  return fetch(`https://api.lyrics.ovh/v1/${artist}/${songTitle}`)
+    .then(res => 
+      res.json()
+    )
+    .then(res => {
+      return res;
+    });
+};
+
+

@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, useParams } from 'react-router-dom';
+import { useSongs } from '../hooks/songs';
 
 
-
-const ReleaseView = ({ listSongs = [] }) => {
-  
-  const songElements = listSongs.map((el, i) => {    
+const ReleaseView = () => {
+  const { id, artist } = useParams();
+  const albums = useSongs(id);
+  const songElements = albums.map((el, i) => {    
     return (
       <li key={i}>
-        <Link to={`/lyric/${el.id}`}>
+        <Link to={`/lyric/${el.id}/${artist}/${el.title}`}>
           <h2>{el.title}</h2>
         </Link>
       </li>
@@ -21,12 +21,6 @@ const ReleaseView = ({ listSongs = [] }) => {
       {songElements}
     </ul>
   );
-};
-
-ReleaseView.propTypes = {
-  listSongs: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired
-  })).isRequired,
 };
 
 export default ReleaseView;

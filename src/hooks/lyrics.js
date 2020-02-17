@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { getLyrics } from '../services/musicBrainz';
 
+export const useLyrics = (artist, title) => {
+  const [lyrics, setLyrics] = useState({});
 
-export const useLyrics = (artist, songTitle) => {
-  const [lyrics, setLyircs] = useState('');
   useEffect(() => {
-    getLyrics(artist, songTitle)
-      .then(setLyircs);
-  }, [songTitle]);
-  
+    getLyrics(artist, title)
+      .then(lyrics => {
+        console.log(JSON.stringify(lyrics, null, 2));
+        return lyrics;
+      })
+      .then((lyrics) => setLyrics(lyrics));
+  }, []);
   return lyrics;
 };

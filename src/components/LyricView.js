@@ -1,25 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useLyrics } from '../hooks/lyrics';
+import { useParams } from 'react-router-dom';
 
 
-const LyricView = ({ lyrics = '' }) => {
-  const br = '<br>';
-  const lyricElements = lyrics.split('\n').map((el, i)=>{
-    return (
-      el ? <div key={i}>{el}</div> : <br key={i} />
-      //<p key={i}>{el ? el : <br></br>}</p>
-    );
-  });
-
+const LyricView = () => {
+  const { artist, title } = useParams();
+  const lyrics  = useLyrics(artist, title);
+  let i = 0;
   return (
-    <>
-      { lyricElements }
-    </>
+    <pre key={i++}>
+      {lyrics.lyrics}
+    </pre>
   );
-};
-
-LyricView.propTypes = {
-  lyrics: PropTypes.string.isRequired
 };
 
 export default LyricView;
